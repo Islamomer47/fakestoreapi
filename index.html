@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake Store API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      footer {
+        background-color: #f8f9fa;
+        padding: 1em;
+        text-align: center;
+      }
+      main {
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .products-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        width: 100%;
+      }
+      .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        width: 300px;
+        list-style-type: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      h2 {
+        text-align: center;
+        width: 100%;
+      }
+      #products1 {
+        list-style-type: none;
+        margin: 20px 0;
+        padding: 0;
+      }
+      #products1 li {
+        margin: 10px 0;
+      }
+      form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+      }
+      
+      form button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .container {
+  display: flex;
+  gap: 50px;
+}
+
+#posts {
+  width: 400px;
+}
+
+i {
+  cursor: pointer;
+}
+
+#posts div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options {
+  display: flex;
+  gap: 25px;
+}
+
+#msg {
+  color: red;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome this is Fake Store</h1>
+    </header>
+    <main>
+      <div class="products-container" id="products">
+        <h2>Our Products</h2>
+      </div>
+      <div class="buttons1">
+       
+      <div>
+        <h1>Social Media App</h1>
+        <div class="container">
+      
+      
+        
+        <div class="left">
+            <form id="form">
+              <label for="post"> Write your post here</label>
+              <br><br>
+              <textarea name="post" id="input" cols="30" rows="10"></textarea>
+              <br> <br>
+              <div id="msg"></div>
+              <button type="submit" id="submit">Post</button>
+            </form>
+          </div>
+          <div class="right">
+            <h3>Your posts here</h3>
+            <div id="posts">
+                <div>
+                    <p>Hello world post 1</p>
+                    <span class="options">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-alt"></i>
+                    </span>
+                  </div>
+                
+                  <div >
+                    <p>Hello world post 2</p>
+                    <span class="options">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-alt"></i>
+                    </span>
+                  </div>
+            </div>
+          </div>
+      </div></div>
+    </main>
+    <footer>
+      <p>&copy; 2024 FakeStore.</p>
+    </footer>
+  
+    <script type="module">// Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+        child,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+      
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBEQDfCY32IjuYbMTRaps2fhKZy-Ph_BqU",
+        authDomain: "orange-55503.firebaseapp.com",
+        databaseURL:
+          "https://orange-55503-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "orange-55503",
+        storageBucket: "orange-55503.appspot.com",
+        messagingSenderId: "1027511925196",
+        appId: "1:1027511925196:web:419c47506c842590340569",
+        measurementId: "G-N1ZJKH1SL7",
+      };
+      
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      
+      const db = getDatabase(app);
+      document.getElementById("submit").addEventListener("click", function (e) {
+        e.preventDefault();
+        set(ref(db, "user/" + document.getElementById("input").value), {
+          input: document.getElementById("input").value,
+        });
+        alert("done");
+      });
+      </script>
+      <script src="app.js"></script>
+  </body>
+</html>
